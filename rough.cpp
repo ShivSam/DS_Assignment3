@@ -1,97 +1,54 @@
 #include<iostream>
 using namespace std;
-struct node
+class queue
 {
-    node*prev;
-    int num ;
-    node*next;
-}*start = NULL;
-class stackk
-{
-public :
-    int h , i,c=0;
-    node* item , *l=NULL;
-    void create()
-    {
-        cout<<"ENTER THE SIZE OF THE STACK";
-        cin>>h;
-        for(i=0;i<h;i++)
-        {
-            item= new node;
-            cout<<"ENTER THE VALUES IN THE NODE";
-            cin>>item->num;
-            item->next=NULL;
-            item->prev=NULL;
-
-            if(start==NULL)
-            {
-                start=item;
-                l=item;
-            }
-            else
-            {
-                l->next=item;
-                item->prev=l;
-                l=item;
-
-            }
-        }
+public:
+    int arr[100], i , item, size, front=-1, rear=-1;
+    void insert() {
+        cout<<"enter the size of an array";
+        cin>>size;
     }
-
-    void display()
-    {
-        node*temp;
-        temp=l;
-        cout<<"\nThe stack is\n";
-        while(temp !=NULL)
-        {
-            cout<<temp->num<<" ->";
-            temp=temp->prev;
-        }
-        cout<<"NULL\n";
-    }
-
     void push() {
-        node*item;
-        item = new node;
-        cout<<"\nENTER THE VALUE TO BE ADDED IN THE STACK";
-        cin>>item->num;
-        l->next=item;
-        item->prev=l;
-        l=item;
-        display();
+        if (rear==size-1)
+            cout<<"overflow";
+        else {
+            cout<<"enter the element to be pushed into the queue";
+            cin>>item;
+            arr[rear]=item;
+        }
+        if(front==-1&&rear==-1){
+            front=0;
+            rear=0;
+        }
+        else
+            rear=rear+1;
     }
-
-    void pop()
-    {
-        cout<<"the popped element is";
-        cout<<l->num;
-        l=l->prev;
-        display();
+    void display() {
+        cout<<"elements presents in the array";
+        for(i=front;i<=rear;i++)
+            cout<<arr[i];
     }
 };
-int main()
-{
-    int  choice;              //used for selection push, pop operations
-    char cont;                      //used for continuity of the program
-    stackk s;                        //object creation or instantiation
-    s.create();
-    s.display();
 
+int main() {
+    int  choice;                    //used for selection push, pop operations
+    char cont;                      //used for continuity of the program
+    queue q;
+    q.insert() ;                    //object creation or instantiation
     do {
         cout<<"\nSelect any operation\n1. PUSH \n2. POP \n3. DISPLAY\n4. EXIT"<<endl;
         cin>>choice;
         switch(choice) {
             case 1 :
-                s.push() ;
+                q.push() ;
                 break;
 
-            case 2:
-                s.pop();
-                break;
+                //  case 2:
+                //  q.pop();
+                //  break;
 
             case 3:
-                s.display();
+                q.display();
                 break;
 
             case 4:
@@ -100,8 +57,6 @@ int main()
             default:
                 cout<<"PLEASE ENTER A VALID CHOICE :)"<<endl;
         }
-
-
         cout<<"Do you want to continue?\npress Y or N to exit"<<endl;
         cin>>cont;
     }

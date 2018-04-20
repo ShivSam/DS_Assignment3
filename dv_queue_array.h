@@ -94,6 +94,23 @@ private:
         else
             front++;
     }
+
+
+    void display(){
+        if(count == 0)
+            std::cout<<"No element to display"<<std::endl;
+        else{
+            for(int i = front; i<count; i++) {
+                if (i == Size - 1 && cyclic) {
+                    i = 0;
+                    std::cout << intTypeQ[i] << " ";
+                }
+                else
+                    std::cout << intTypeQ[i] << " ";
+                std::cout << "\n\n";
+            }
+        }
+    }
 };
 //Array implementation Ends
 

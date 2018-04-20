@@ -84,6 +84,16 @@ private:
             count++;
         }
     }
+
+
+    void remove(){
+        if(count == 0)
+            std::cout<<"Underflow"<<std::endl;
+        else if( front == Size -1)
+            front = 0;
+        else
+            front++;
+    }
 };
 //Array implementation Ends
 

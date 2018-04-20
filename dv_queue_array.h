@@ -51,7 +51,41 @@ public:
         std::cout<<std::endl;
     }
 };
-//Array implementaion Ends
+
+//for Circular queue
+class CircularQ : public QArray{
+private:
+    bool cyclic;
+    short count;
+
+    CircularQ()
+            : cyclic(false), count(0){
+        std::cout<<"Enter the size of the queue"<<std::endl;
+        std::cin>>Size;
+
+        intTypeQ = new int[Size];           //Queue allocation
+    }
+
+    void insert(int value){
+        if(count == Size-1 || rear == front == -1)
+            std::cout<<"Overflow"<<std::endl;
+        else if(fornt == -1 && rear == -1){
+            intTypeQ[++rear] = value;
+            front++;
+            count++;
+        }
+        else if( rear == Size - 1){
+            rear = 0;
+            queue[rear] = value;
+            count++;
+        }
+        else{
+            queue[++rear] = value;
+            count++;
+        }
+    }
+};
+//Array implementation Ends
 
 
 /************** Implementation via Linked List ***********************/

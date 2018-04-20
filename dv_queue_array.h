@@ -58,6 +58,7 @@ private:
     bool cyclic;
     short count;
 
+public:
     CircularQ()
             : cyclic(false), count(0){
         std::cout<<"Enter the size of the queue"<<std::endl;
@@ -67,48 +68,53 @@ private:
     }
 
     void insert(int value){
-        if(count == Size-1 || rear == front == -1)
+        if(count == Size|| rear == front -1)
             std::cout<<"Overflow"<<std::endl;
-        else if(fornt == -1 && rear == -1){
+        else if(front == -1 && rear == -1){
             intTypeQ[++rear] = value;
             front++;
             count++;
         }
         else if( rear == Size - 1){
             rear = 0;
-            queue[rear] = value;
+            intTypeQ[rear] = value;
             count++;
+            cyclic = true;
         }
         else{
-            queue[++rear] = value;
+            intTypeQ[++rear] = value;
             count++;
         }
     }
-
 
     void remove(){
         if(count == 0)
             std::cout<<"Underflow"<<std::endl;
-        else if( front == Size -1)
+        else if( front == Size -1) {
             front = 0;
-        else
+            count--;
+            cyclic = false;
+        }
+        else {
             front++;
+            count--;
+        }
     }
-
 
     void display(){
         if(count == 0)
             std::cout<<"No element to display"<<std::endl;
         else{
-            for(int i = front; i<count; i++) {
-                if (i == Size - 1 && cyclic) {
-                    i = 0;
-                    std::cout << intTypeQ[i] << " ";
+            int j = front;
+            for(int i = 0; i< count; i++) {
+                if (j == Size && cyclic) {
+                    j = 0;
+                    std::cout<<intTypeQ[j]<< " ";
                 }
                 else
-                    std::cout << intTypeQ[i] << " ";
-                std::cout << "\n\n";
+                    std::cout<<intTypeQ[j++]<< " ";
             }
+            std::cout << "\n\n";
         }
     }
 };
